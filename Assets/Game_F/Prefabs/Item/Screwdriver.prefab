@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6786696975860239764}
   - component: {fileID: 995549143663865867}
-  - component: {fileID: 5730968319442742170}
   - component: {fileID: 1840181019846483697}
   - component: {fileID: 8526586485363067354}
   - component: {fileID: 8532889243285790019}
+  - component: {fileID: 466241467041212702}
   m_Layer: 0
   m_Name: Screwdriver
   m_TagString: Untagged
@@ -58,22 +58,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.05, z: 0.4}
   m_Center: {x: 0, y: 0.025, z: 0}
---- !u!114 &5730968319442742170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172378639585758639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5c23f96c910438ba569fe86a0e8637b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupItem
-  _componentIndexCache: 0
-  _addedNetworkObject: {fileID: 1840181019846483697}
-  _networkObjectCache: {fileID: 1840181019846483697}
-  itemData: {fileID: 11400000, guid: e256dae6fad12cb44b870a444947db7d, type: 2}
 --- !u!114 &1840181019846483697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +87,7 @@ MonoBehaviour:
   _teleportThreshold: 1
   <PrefabId>k__BackingField: 7
   <SpawnableCollectionId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 11353588970463678316
+  <AssetPathHash>k__BackingField: 16050403789415147524
   SceneId: 0
   SerializedTransformProperties:
     Position: {x: 0, y: 0, z: 0}
@@ -117,7 +101,8 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   <PredictedOwner>k__BackingField: {fileID: 0}
   NetworkBehaviours:
-  - {fileID: 5730968319442742170}
+  - {fileID: 8532889243285790019}
+  - {fileID: 466241467041212702}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -128,7 +113,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedTimestamp: -8584257555803449687
+  _initializedTimestamp: -8584253928210321338
 --- !u!54 &8526586485363067354
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -168,9 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FishNet.Runtime::FishNet.Component.Transforming.NetworkTransform
-  _componentIndexCache: 255
+  _componentIndexCache: 0
   _addedNetworkObject: {fileID: 1840181019846483697}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1840181019846483697}
   _componentConfiguration: 0
   _synchronizeParent: 0
   _packing:
@@ -202,6 +187,22 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &466241467041212702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172378639585758639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d663a0b96aee417da02924680909982a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupItem
+  _componentIndexCache: 1
+  _addedNetworkObject: {fileID: 1840181019846483697}
+  _networkObjectCache: {fileID: 1840181019846483697}
+  itemData: {fileID: 11400000, guid: e256dae6fad12cb44b870a444947db7d, type: 2}
 --- !u!1 &5058413220024095074
 GameObject:
   m_ObjectHideFlags: 0
