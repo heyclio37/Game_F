@@ -45,4 +45,10 @@ public class PickupItem : NetworkBehaviour, IInteractable
         ItemRigidbody.isKinematic = !isServer;
         if (isServer) ItemRigidbody.linearVelocity = velocity;
     }
+
+    [Server]
+    public void Consume()
+    {
+        ServerManager.Despawn(gameObject);
+    }
 }
