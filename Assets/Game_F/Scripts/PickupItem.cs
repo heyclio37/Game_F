@@ -1,4 +1,3 @@
-using System;
 using FishNet.Object;
 using UnityEngine;
 
@@ -9,6 +8,7 @@ public class PickupItem : NetworkBehaviour, IInteractable
     public ItemData itemData;
     public Collider ItemCollider { get; private set; }
     public Rigidbody ItemRigidbody { get; private set; }
+    public bool IsHeld { get; set; }
 
     private void Awake()
     {
@@ -43,7 +43,16 @@ public class PickupItem : NetworkBehaviour, IInteractable
         transform.position = position;
         ItemCollider.enabled = true;
         ItemRigidbody.isKinematic = !isServer;
-        if (isServer) ItemRigidbody.linearVelocity = velocity;
+        if (isServer)
+            ItemRigidbody.linearVelocity = velocity;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!IsServerStarted) return;
+        if (IsHeld) return;
+
+        NoiseSystem.MakeNoise(transform.position);
     }
 
     [Server]

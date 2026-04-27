@@ -12,56 +12,13 @@
   <component name="ChangeListManager">
     <list default="true" id="dd076fc1-3df7-42fe-9898-6c8f2f3f0c00" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game_F/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game_F/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Materials/Translucent_Unlit.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Materials/Translucent_Unlit.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark 3D Normal.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark 3D Normal.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark 3D Rigidbodies.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark 3D Rigidbodies.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark Cubes.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark Cubes.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark Rigidbodies.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark Rigidbodies.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Materials/Ground.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Materials/Ground.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Materials/Rollback Visualization/ClientPosition.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Materials/Rollback Visualization/ClientPosition.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Materials/Rollback Visualization/ServerPosition.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Materials/Rollback Visualization/ServerPosition.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Materials/Target.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Materials/Target.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Materials/Wall.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Materials/Wall.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Models/Weapons/Materials/Gray4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Models/Weapons/Materials/Gray4.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Models/Weapons/Materials/Gray6.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Models/Weapons/Materials/Gray6.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Models/Weapons/Materials/Gray8.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Models/Weapons/Materials/Gray8.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Models/Weapons/Materials/Mesh1_Group2_Group1_ModelMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Models/Weapons/Materials/Mesh1_Group2_Group1_ModelMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Models/Weapons/Materials/Mesh2_Group3_Group1_ModelMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Models/Weapons/Materials/Mesh2_Group3_Group1_ModelMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Scenes/ColliderRollbackDemo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Scenes/ColliderRollbackDemo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/CharacterController/CharacterController Prediction Demo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/CharacterController/CharacterController Prediction Demo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/CharacterController/Materials/BlueMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/CharacterController/Materials/BlueMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/CharacterController/Materials/OrangeMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/CharacterController/Materials/OrangeMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/CharacterController/Prefabs/CharacterControllerPrediction.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/CharacterController/Prefabs/CharacterControllerPrediction.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Materials/BlueMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Materials/BlueMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Materials/FrontWheel.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Materials/FrontWheel.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Materials/GreenMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Materials/GreenMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Materials/OrangeMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Materials/OrangeMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Materials/PinkMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Materials/PinkMat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DefaultPrefabObjects.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultPrefabObjects.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Materials/RedMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Materials/RedMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Rigidbody Prediction Demo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Rigidbody Prediction Demo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Materials/Black.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Materials/Black.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Materials/Blue.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Materials/Blue.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Materials/Green.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Materials/Green.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Materials/Red.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Materials/Red.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Scenes/Additive/AdditiveConnection.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Scenes/Additive/AdditiveConnection.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Scenes/Additive/AdditiveGlobal.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Scenes/Additive/AdditiveGlobal.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Scenes/Additive/AdditiveMain.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Scenes/Additive/AdditiveMain.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Scenes/Replace/ReplaceConnection.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Scenes/Replace/ReplaceConnection.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Scenes/Replace/ReplaceMain.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Scenes/Replace/ReplaceMain.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager/Additive Scenes/Materials/Ground.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager/Additive Scenes/Materials/Ground.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager/Additive Scenes/Materials/Player.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager/Additive Scenes/Materials/Player.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager/Additive Scenes/Materials/TreeGrowth.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager/Additive Scenes/Materials/TreeGrowth.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager/Additive Scenes/Materials/TreeStump.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager/Additive Scenes/Materials/TreeStump.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Runtime/Plugins/GameKit/Dependencies/Utilities/Types/ObjectPooling/Demo/Scenes/ObjectPool.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Runtime/Plugins/GameKit/Dependencies/Utilities/Types/ObjectPooling/Demo/Scenes/ObjectPool.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Materials/Gold.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Materials/Gold.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Taser.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Taser.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/PickupItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/PickupItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerInteract.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerInteract.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/TextMesh Pro/Examples &amp; Extras/Materials/Crate - Surface Shader Scene.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/TextMesh Pro/Examples &amp; Extras/Materials/Crate - Surface Shader Scene.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/TextMesh Pro/Examples &amp; Extras/Materials/Ground - Logo Scene.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/TextMesh Pro/Examples &amp; Extras/Materials/Ground - Logo Scene.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/TextMesh Pro/Examples &amp; Extras/Materials/Ground - Surface Shader Scene.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/TextMesh Pro/Examples &amp; Extras/Materials/Ground - Surface Shader Scene.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/TextMesh Pro/Examples &amp; Extras/Materials/Small Crate_diffuse.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/TextMesh Pro/Examples &amp; Extras/Materials/Small Crate_diffuse.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,12 +26,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="80" />
+    <option name="cachedIndexableFilesCount" value="82" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/States/ChaseState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/States/StunnedState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/79685a0e6af34ee788f220bc7ae798e82a400/a5/f858b557/CharacterController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
@@ -178,6 +137,10 @@
       <workItem from="1776276369400" duration="40000" />
       <workItem from="1776276421060" duration="466000" />
       <workItem from="1776279346866" duration="3791000" />
+      <workItem from="1776809554094" duration="1244000" />
+      <workItem from="1777222564594" duration="285000" />
+      <workItem from="1777222871064" duration="2266000" />
+      <workItem from="1777303720249" duration="6061000" />
     </task>
     <servers />
   </component>
