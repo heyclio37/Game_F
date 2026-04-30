@@ -6,10 +6,7 @@ public class PlayerMoveController : NetworkBehaviour
     [SerializeField] private PlayerRefs playerRefs;
 
     private float verticalVelocity;
-    private readonly float groundSnap = -0.5f;
-
-    
-
+    private readonly float groundSnap;
 
     private void Update()
     {
@@ -23,9 +20,9 @@ public class PlayerMoveController : NetworkBehaviour
         Vector3 moveDirection = transform.forward * input.y + transform.right * input.x;
         Vector3 moveVelocity = moveDirection * playerRefs.MoveSpeed;
 
-        if (playerRefs.CharacterController.isGrounded && verticalVelocity < 0f) 
+        if (playerRefs.CharacterController.isGrounded && verticalVelocity < 0f)
             verticalVelocity = groundSnap;
-        else 
+        else
             verticalVelocity -= playerRefs.Gravity * Time.deltaTime;
 
         moveVelocity.y = verticalVelocity;

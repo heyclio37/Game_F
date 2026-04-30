@@ -12,25 +12,27 @@ public enum DoorState
 public class Door : NetworkBehaviour, IInteractable
 {
     [SerializeField] private Transform doorWing;
-    [SerializeField] private float openAngle = 90f;
-    [SerializeField] private float speed = 3f;
-    [SerializeField] private ItemData requiredItem;
+    [SerializeField] private float openAngle;
+    [SerializeField] private float speed;
+    [SerializeField] protected ItemData requiredItem;
 
-    private readonly SyncVar<DoorState> state = new();
+    protected readonly SyncVar<DoorState> state = new();
     private float currentAngle;
 
-    private void Awake()
+    public bool IsOpen => state.Value == DoorState.Open;
+
+    protected virtual void Awake()
     {
         state.Value = requiredItem != null ? DoorState.Locked : DoorState.Closed;
     }
 
-    public void Interact(PlayerInteract player)
+    public virtual void Interact(PlayerInteract player)
     {
         player.InteractWithDoorServerRpc(NetworkObject);
     }
 
     [Server]
-    public bool TryInteract(PickupItem heldItem)
+    public virtual bool TryInteract(PickupItem heldItem)
     {
         switch (state.Value)
         {
@@ -54,7 +56,7 @@ public class Door : NetworkBehaviour, IInteractable
         return false;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         float targetAngle = state.Value == DoorState.Open ? openAngle : 0f;
         currentAngle = Mathf.Lerp(currentAngle, targetAngle, Time.deltaTime * speed);

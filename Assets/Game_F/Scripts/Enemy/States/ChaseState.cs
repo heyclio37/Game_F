@@ -19,6 +19,17 @@ public class ChaseState : IEnemyState
             return;
         }
 
+        float distanceToTarget = Vector3.Distance(enemy.transform.position, enemy.CurrentTarget.position);
+
+        if (distanceToTarget <= enemy.CatchDistance)
+        {
+            Debug.Log($"[ChaseState] Within catch distance, catching {enemy.CurrentTarget.name}");
+            enemy.TryCatchPlayer(enemy.CurrentTarget);
+            enemy.CurrentTarget = null;
+            enemy.ChangeToPatrol();
+            return;
+        }
+
         Transform player = enemy.DetectPlayer();
         if (player != null)
         {

@@ -105,6 +105,15 @@ public class PlayerInteract : NetworkBehaviour
         heldTaserGun = null;
     }
 
+    [Server]
+    public void ForceDropItem()
+    {
+        if (heldItem.Value == null) return;
+        NetworkObject item = heldItem.Value;
+        heldItem.Value = null;
+        DetachItemObserversRpc(item, Vector3.zero);
+    }
+
     [ServerRpc]
     public void InteractWithDoorServerRpc(NetworkObject doorObject)
     {
@@ -116,8 +125,44 @@ public class PlayerInteract : NetworkBehaviour
         if (consumed)
         {
             heldItem.Value = null;
-            heldPickupItem = null;
+            ClearHeldRefsObserversRpc();
         }
+    }
+
+    [ServerRpc]
+    public void InteractWithExitDoorServerRpc(NetworkObject doorObject)
+    {
+        if (doorObject == null) return;
+        ExitDoor exitDoor = doorObject.GetComponent<ExitDoor>();
+        if (exitDoor == null) return;
+
+        bool consumed = exitDoor.TryInteract(heldPickupItem);
+        if (consumed)
+        {
+            heldItem.Value = null;
+            ClearHeldRefsObserversRpc();
+        }
+    }
+
+    [ServerRpc]
+    public void InteractWithPrisonDoorServerRpc(NetworkObject doorObject)
+    {
+        if (doorObject == null) return;
+        PrisonDoor prisonDoor = doorObject.GetComponent<PrisonDoor>();
+        if (prisonDoor == null) return;
+
+        // Только свободный игрок может открыть тюремную дверь
+        PlayerCaptureState captureState = GetComponent<PlayerCaptureState>();
+        if (captureState != null && captureState.IsCaptured) return;
+
+        prisonDoor.TryOpen(captureState);
+    }
+
+    [ObserversRpc]
+    private void ClearHeldRefsObserversRpc()
+    {
+        heldPickupItem = null;
+        heldTaserGun = null;
     }
 
     [ServerRpc]
@@ -131,18 +176,13 @@ public class PlayerInteract : NetworkBehaviour
     {
         if (bulletObject == null) return;
 
-        float distance = Vector3.Distance(
-            playerRefs.CameraTarget.position,
-            bulletObject.transform.position
-        );
-
+        float distance = Vector3.Distance(playerRefs.CameraTarget.position, bulletObject.transform.position);
         if (distance > playerRefs.InteractDistance) return;
 
         Bullet bullet = bulletObject.GetComponent<Bullet>();
         if (bullet == null || heldTaserGun == null) return;
 
         TaserGun gun = bullet.GetOwnerGun();
-
         if (gun != null && gun == heldTaserGun)
         {
             gun.RetrieveBullet();

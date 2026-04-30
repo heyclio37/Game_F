@@ -117,7 +117,7 @@ MonoBehaviour:
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 1
+  <PrefabId>k__BackingField: 6
   <SpawnableCollectionId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 2016986388897800906
   SceneId: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedTimestamp: -8584241052905868073
+  _initializedTimestamp: -8584240242312619037
 --- !u!54 &3927850586382332536
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 123
-  checkRadius: 1
+  checkDistance: 0.3
 --- !u!1 &8462111996142824712
 GameObject:
   m_ObjectHideFlags: 0

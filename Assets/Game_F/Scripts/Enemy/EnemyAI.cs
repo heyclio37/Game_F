@@ -10,8 +10,9 @@ public class EnemyAI : NetworkBehaviour
     [SerializeField] private float sightAngle = 180f;
     [SerializeField] private float hearingRange = 10f;
     [SerializeField] private float stunDuration = 5f;
+    [SerializeField] private float catchDistance = 1.5f;
     [SerializeField] private LayerMask obstacleMask;
-    
+
     public NavMeshAgent Agent { get; private set; }
     public Transform[] PatrolPoints => patrolPoints;
     public float WaitTime => waitTime;
@@ -19,6 +20,7 @@ public class EnemyAI : NetworkBehaviour
     public float SightAngle => sightAngle;
     public float HearingRange => hearingRange;
     public float StunDuration => stunDuration;
+    public float CatchDistance => catchDistance;
 
     private EnemyStateMachine stateMachine;
     private PatrolState patrolState;
@@ -29,7 +31,7 @@ public class EnemyAI : NetworkBehaviour
     private int currentPatrolIndex;
     public Transform CurrentTarget { get; set; }
     public Vector3 LastKnownPosition { get; set; }
-    
+
     private float lastNoiseTime;
     private float noiseCooldown = 1f;
     private Vector3 lastNoisePosition;
@@ -79,6 +81,9 @@ public class EnemyAI : NetworkBehaviour
             PlayerRefs player = hit.GetComponentInParent<PlayerRefs>();
             if (player == null) continue;
 
+            PlayerCaptureState captureState = player.GetComponent<PlayerCaptureState>();
+            if (captureState != null && captureState.IsCaptured) continue;
+
             Vector3 playerPosition = player.transform.position;
             Vector3 directionToPlayer = (playerPosition - transform.position).normalized;
             float angle = Vector3.Angle(transform.forward, directionToPlayer);
@@ -111,6 +116,24 @@ public class EnemyAI : NetworkBehaviour
         lastNoiseTime = Time.time;
         lastNoisePosition = noisePosition;
         ChangeToSearch(noisePosition);
+    }
+    
+    [Server]
+    public void TryCatchPlayer(Transform target)
+    {
+        Debug.Log($"[Enemy] TryCatchPlayer target={target?.name}");
+        if (GameManager.Instance == null)
+        {
+            Debug.LogError("[Enemy] GameManager.Instance is null");
+            return;
+        }
+        PlayerCaptureState captureState = target.GetComponent<PlayerCaptureState>();
+        if (captureState == null)
+        {
+            Debug.LogError("[Enemy] target has no PlayerCaptureState");
+            return;
+        }
+        GameManager.Instance.OnPlayerCaught(captureState);
     }
 
     public void ChangeToChase(Transform target)

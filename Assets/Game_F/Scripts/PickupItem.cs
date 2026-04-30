@@ -3,8 +3,11 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
+
+
 public class PickupItem : NetworkBehaviour, IInteractable
 {
+    
     public ItemData itemData;
     public Collider ItemCollider { get; private set; }
     public Rigidbody ItemRigidbody { get; private set; }
