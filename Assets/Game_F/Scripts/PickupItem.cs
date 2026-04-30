@@ -35,6 +35,7 @@ public class PickupItem : NetworkBehaviour, IInteractable
         transform.localRotation = Quaternion.identity;
         ItemCollider.enabled = false;
         ItemRigidbody.isKinematic = true;
+        IsHeld = true;
     }
 
     public void Detach(Vector3 position, Vector3 velocity, bool isServer)
@@ -45,8 +46,9 @@ public class PickupItem : NetworkBehaviour, IInteractable
         ItemRigidbody.isKinematic = !isServer;
         if (isServer)
             ItemRigidbody.linearVelocity = velocity;
+        IsHeld = false;
     }
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (!IsServerStarted) return;
@@ -54,10 +56,11 @@ public class PickupItem : NetworkBehaviour, IInteractable
 
         NoiseSystem.MakeNoise(transform.position);
     }
-
+    
     [Server]
     public void Consume()
     {
         ServerManager.Despawn(gameObject);
     }
+
 }

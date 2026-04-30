@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &204543872461626830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4593900560356773017}
+  m_Layer: 0
+  m_Name: SootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4593900560356773017
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204543872461626830}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.02695, y: 0.091, z: 0.71}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6657656707909160405}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7711090716474420391
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,6 +44,7 @@ GameObject:
   - component: {fileID: 419609283002563862}
   - component: {fileID: 3927850586382332536}
   - component: {fileID: 1439332671671298404}
+  - component: {fileID: -4202657491540490560}
   m_Layer: 0
   m_Name: Taser
   m_TagString: Untagged
@@ -34,6 +66,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2911704214137999832}
+  - {fileID: 4593900560356773017}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8538547138324080926
@@ -101,6 +134,7 @@ MonoBehaviour:
   <PredictedOwner>k__BackingField: {fileID: 0}
   NetworkBehaviours:
   - {fileID: 1439332671671298404}
+  - {fileID: -4202657491540490560}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
   RuntimeParentNetworkBehaviour: {fileID: 0}
@@ -111,7 +145,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedTimestamp: -8584243001499945928
+  _initializedTimestamp: -8584241052905868073
 --- !u!54 &3927850586382332536
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,6 +189,27 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 419609283002563862}
   _networkObjectCache: {fileID: 419609283002563862}
   itemData: {fileID: 11400000, guid: 18268d5a617128842b68761682ae7e1b, type: 2}
+--- !u!114 &-4202657491540490560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7711090716474420391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d684d1cc919e24443b8555cd5371dbdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TaserGun
+  _componentIndexCache: 1
+  _addedNetworkObject: {fileID: 419609283002563862}
+  _networkObjectCache: {fileID: 419609283002563862}
+  shootPoint: {fileID: 4593900560356773017}
+  bulletPrefab: {fileID: 8601711676904303057, guid: 1352c26cc62ccf2419c6cda03425ceb2, type: 3}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 123
+  checkRadius: 1
 --- !u!1 &8462111996142824712
 GameObject:
   m_ObjectHideFlags: 0

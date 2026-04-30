@@ -13,12 +13,13 @@
     <list default="true" id="dd076fc1-3df7-42fe-9898-6c8f2f3f0c00" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game_F/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game_F/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/DefaultPrefabObjects.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultPrefabObjects.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Materials/RedMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Materials/RedMat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Materials/Rollback Visualization/ServerPosition.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Materials/Rollback Visualization/ServerPosition.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager/Additive Scenes/Materials/TreeGrowth.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager/Additive Scenes/Materials/TreeGrowth.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Taser.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Taser.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/GameInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/GameInput.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/PickupItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/PickupItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerInteract.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerInteract.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +35,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/States/ChaseState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/States/StunnedState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/TaserGun.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/79685a0e6af34ee788f220bc7ae798e82a400/a5/f858b557/CharacterController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
@@ -141,6 +143,7 @@
       <workItem from="1777222564594" duration="285000" />
       <workItem from="1777222871064" duration="2266000" />
       <workItem from="1777303720249" duration="6061000" />
+      <workItem from="1777494665678" duration="11875000" />
     </task>
     <servers />
   </component>

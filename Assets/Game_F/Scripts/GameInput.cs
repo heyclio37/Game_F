@@ -6,6 +6,7 @@ public class GameInput : MonoBehaviour
 {
     public event Action OnInteractAction;
     public event Action OnDropAction;
+    public event Action OnAttackAction;
    public static GameInput Instance { get; private set; }
 
    private PlayerInputActions playerInputActions;
@@ -25,6 +26,7 @@ public class GameInput : MonoBehaviour
 
        playerInputActions.Player.Interact.performed += Interact_Performed;
        playerInputActions.Player.Drop.performed += Drop_Performed;
+       playerInputActions.Player.Attack.performed += Attack_Performed;
    }
 
    private void Drop_Performed(InputAction.CallbackContext obj)
@@ -35,6 +37,10 @@ public class GameInput : MonoBehaviour
    private void Interact_Performed(InputAction.CallbackContext obj)
    {
        OnInteractAction?.Invoke();
+   }
+   private void Attack_Performed(InputAction.CallbackContext obj)
+   {
+       OnAttackAction?.Invoke();
    }
 
    public Vector2 GetMovementVectorNormalized()
