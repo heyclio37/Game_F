@@ -4,11 +4,12 @@
 using System;
 using System.Collections.Generic;
 using FishNet.Editing;
+using FishNet.Editing.NetworkProfiler;
 using FishNet.Transporting;
 using GameKit.Dependencies.Utilities;
 using Unity.Profiling;
 using UnityEngine;
-
+using BidirectionalNetworkTraffic = FishNet.Editing.NetworkProfiler.BidirectionalNetworkTraffic;
 namespace FishNet.Managing.Statistic
 {
     [Serializable]

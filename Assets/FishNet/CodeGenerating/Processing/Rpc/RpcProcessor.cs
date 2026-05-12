@@ -257,6 +257,7 @@ namespace FishNet.CodeGenerating.Processing.Rpc
         {
             intentionallyNull = false;
 
+
             string methodName = $"{WRITER_PREFIX}{GetRpcMethodName(cr)}";
             /* If method already exist then clear it. This
              * can occur when a method needs to be rebuilt due to
@@ -349,7 +350,7 @@ namespace FishNet.CodeGenerating.Processing.Rpc
             ILProcessor processor = writerMd.Body.GetILProcessor();
             // Add all parameters from the original.
             for (int i = 0; i < originalMd.Parameters.Count; i++)
-                writerMd.Parameters.Add(originalMd.Parameters[i]);
+                writerMd.Parameters.Add(originalMd.Parameters[i].CloneImported(Session, writerMd));
             // Get channel if it exist, and get target parameter.
             ParameterDefinition channelParameterDef = GetChannelParameter(writerMd, RpcType.None);
 
@@ -363,7 +364,7 @@ namespace FishNet.CodeGenerating.Processing.Rpc
             /* Creates basic ServerRpc and ClientRpc
              * conditions such as if requireOwnership ect..
              * or if (!base.isClient) */
-            CreateClientRpcConditionsForServer(writerMd, cr.Attribute);
+                CreateClientRpcConditionsForServer(writerMd, cr.Attribute);
 
             VariableDefinition channelVariableDef = CreateAndPopulateChannelVariable(writerMd, channelParameterDef);
             /* Create a local PooledWriter variable. */
@@ -413,14 +414,14 @@ namespace FishNet.CodeGenerating.Processing.Rpc
 
             // Add all parameters from the original.
             for (int i = 0; i < originalMd.Parameters.Count; i++)
-                writerMd.Parameters.Add(originalMd.Parameters[i]);
+                writerMd.Parameters.Add(originalMd.Parameters[i].CloneImported(Session, writerMd));
             // Add in channel if it doesnt exist.
             ParameterDefinition channelParameterDef = GetChannelParameter(writerMd, RpcType.Server);
 
             /* Creates basic ServerRpc
              * conditions such as if requireOwnership ect..
              * or if (!base.isClient) */
-            CreateServerRpcConditionsForClient(writerMd, cr.Attribute);
+                CreateServerRpcConditionsForClient(writerMd, cr.Attribute);
 
             VariableDefinition channelVariableDef = CreateAndPopulateChannelVariable(writerMd, channelParameterDef);
             // Create a local PooledWriter variable.
@@ -483,6 +484,7 @@ namespace FishNet.CodeGenerating.Processing.Rpc
             bool runLocally = cr.RunLocally;
             MethodDefinition logicMd = cr.LogicMethodDef;
             CustomAttribute rpcAttribute = cr.Attribute;
+
 
             string methodName = $"{READER_PREFIX}{GetRpcMethodName(cr)}";
             /* If method already exist then just return it. This
@@ -854,6 +856,7 @@ namespace FishNet.CodeGenerating.Processing.Rpc
             TypeDefinition typeDef = cr.TypeDef;
             MethodDefinition originalMd = cr.OriginalMethodDef;
 
+
             //Methodname for logic methods do not use prefixes because there can be only one.
             string methodName = $"{LOGIC_PREFIX}{GetMethodNameAsParameters(originalMd)}";
 
@@ -880,7 +883,7 @@ namespace FishNet.CodeGenerating.Processing.Rpc
              * that some reason is the resolution, because Unity. However, even with this fix if the
              * developer makes use of the generic properties of the class from the offending method
              * there is a fair chance the application will crash. */
-#if !UNITY_2022_3_OR_NEWER
+            #if !UNITY_2022_3_OR_NEWER
             /* If the declaring type has a generic then we need to see if any
              * logic instructions call methods in another or same generic class. */
             ILProcessor processor = createdMd.Body.GetILProcessor();
@@ -894,7 +897,7 @@ namespace FishNet.CodeGenerating.Processing.Rpc
 
                 Instruction v = instructions[i];
                 OpCode instrOpCode = v.OpCode;
-                
+
                 if (instrOpCode == OpCodes.Callvirt || instrOpCode == OpCodes.Call)
                 {
                     MethodDefinition calledMd = null;
@@ -919,7 +922,7 @@ namespace FishNet.CodeGenerating.Processing.Rpc
                     }
                 }
             }
-#endif
+            #endif
 
             return createdMd;
         }
@@ -965,6 +968,7 @@ namespace FishNet.CodeGenerating.Processing.Rpc
              * share the same originalMd so it's fine to take the first
              * entry. */
             MethodDefinition originalMd = createdRpcs[0].OriginalMethodDef;
+
 
             ILProcessor processor = originalMd.Body.GetILProcessor();
             originalMd.Body.Instructions.Clear();

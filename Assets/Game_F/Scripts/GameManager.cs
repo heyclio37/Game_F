@@ -35,14 +35,13 @@ public class GameManager : NetworkBehaviour
     public override void OnStartServer()
     {
         base.OnStartServer();
-        StartGame();
         currentState.OnChange += OnStateChanged;
     }
 
     private void OnStateChanged(GameState oldValue, GameState newValue, bool asServer)
     {
-        if (asServer)
-            return; // клиенты уже получат значение, но мы дополнительно сообщим через RPC для явного уведомления
+        if (asServer) return;
+
         if (newValue == GameState.GameWin)
             OnGameWinObserversRpc();
         else if (newValue == GameState.GameOver)
@@ -66,6 +65,7 @@ public class GameManager : NetworkBehaviour
     {
         if (currentState.Value != GameState.WaitingForPlayers) return;
         currentState.Value = GameState.Playing;
+        Debug.Log("[GameManager] Game started — all clients were loaded.");
     }
 
     [Server]
@@ -114,20 +114,10 @@ public class GameManager : NetworkBehaviour
 
         if (!anyPlaying)
         {
-            // Определяем исход для каждого игрока и отправляем RPC
             foreach (var p in allPlayers)
             {
                 if (!p.IsServerStarted) continue;
-                bool win = false;
-                if (anyEscaped)
-                {
-                    win = p.IsEscaped;
-                }
-                else if (allCaptured)
-                {
-                    win = false;
-                }
-
+                bool win = anyEscaped ? p.IsEscaped : false;
                 p.ShowGameResult(win);
             }
 
