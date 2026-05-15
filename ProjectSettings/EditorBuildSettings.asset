@@ -6,8 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Game_F/Scenes/MainMenu.unity
+    path: Assets/Game_F/Scenes/ModeSelectScene.unity
+    guid: acb1456087094bd4c9d6d96889f5ea42
+  - enabled: 1
+    path: Assets/Game_F/Scenes/MainMenuScene.unity
     guid: 8b8431dd362f3e34191d4ca5f878cf5f
+  - enabled: 1
+    path: Assets/Game_F/Scenes/LocalMenuScene.unity
+    guid: 9615bbd52e3d386499d33965d82c4526
   - enabled: 1
     path: Assets/Game_F/Scenes/GameScene.unity
     guid: 99c9720ab356a0642a771bea13969a05

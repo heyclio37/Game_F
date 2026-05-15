@@ -39,7 +39,7 @@ public class SteamLobbyManager : MonoBehaviour
 
         if (!SteamManager.Initialized)
         {
-            Debug.LogError("[Steam] Steamworks не инициализирован! Запустите Steam и проверьте steam_appid.txt");
+            Debug.LogError("[Steam] Steamworks not initialization! Launch steam and heck steam_appid.txt");
             enabled = false;
             return;
         }
@@ -103,6 +103,12 @@ public class SteamLobbyManager : MonoBehaviour
 
         if (InstanceFinder.NetworkManager != null)
         {
+
+            Multipass multipass = InstanceFinder.NetworkManager
+                .TransportManager.GetTransport<Multipass>();
+            if (multipass != null)
+                multipass.SetClientTransport(FISHY_INDEX);
+
             if (IsHost)
             {
                 InstanceFinder.ServerManager.StopConnection(true);
@@ -110,7 +116,9 @@ public class SteamLobbyManager : MonoBehaviour
             }
             else
             {
-                InstanceFinder.ClientManager.StopConnection();
+
+                if (InstanceFinder.IsClientStarted)
+                    InstanceFinder.ClientManager.StopConnection();
             }
         }
 

@@ -31,8 +31,6 @@ public class LobbyRoomManager : NetworkBehaviour
 
     private bool gameStartTriggered = false;
 
-
-
     public override void OnStartNetwork()
     {
         base.OnStartNetwork();
@@ -52,9 +50,17 @@ public class LobbyRoomManager : NetworkBehaviour
     {
         base.OnStartClient();
         Instance = this;
-        Debug.Log("[LobbyRoom] OnStartClient called!");
-        Debug.Log($"[LobbyRoom] LobbyUI.Instance is null: {LobbyUI.Instance == null}");
+
+        playerNames.OnChange += OnPlayerListChanged;
+        playerReady.OnChange += OnReadyStateChanged;
+
         LobbyUI.Instance?.EnableReadyButton();
+
+        // Фикс: хост не попадает в OnRemoteConnectionState
+        if (IsServerStarted)
+            RegisterHostAsPlayer();
+
+        Debug.Log("[LobbyRoom] OnStartClient");
     }
 
     public override void OnStartServer()
@@ -63,10 +69,9 @@ public class LobbyRoomManager : NetworkBehaviour
         Instance = this;
 
         ServerManager.OnRemoteConnectionState += OnRemoteConnectionState;
-
         InstanceFinder.SceneManager.OnClientLoadedStartScenes += OnClientLoadedStartScenes;
 
-        Debug.Log("[LobbyRoom] OnStartServer — subscribed to SceneManager");
+        Debug.Log("[LobbyRoom] OnStartServer");
     }
 
     public override void OnStopServer()
@@ -75,8 +80,6 @@ public class LobbyRoomManager : NetworkBehaviour
         ServerManager.OnRemoteConnectionState -= OnRemoteConnectionState;
         InstanceFinder.SceneManager.OnClientLoadedStartScenes -= OnClientLoadedStartScenes;
     }
-
-
 
     private void OnRemoteConnectionState(NetworkConnection conn, RemoteConnectionStateArgs args)
     {
@@ -260,7 +263,6 @@ public class LobbyRoomManager : NetworkBehaviour
         Debug.Log($"[LobbyRoom] Player spawned for conn {conn.ClientId}");
     }
 
-
     [ObserversRpc]
     private void NotifyLoadingObserversRpc()
     {
@@ -284,6 +286,19 @@ public class LobbyRoomManager : NetworkBehaviour
         LobbyUI.Instance?.UpdatePlayerList(playerNames, playerReady);
     }
 
+    [Server]
+    private void RegisterHostAsPlayer()
+    {
+        NetworkConnection hostConn = LocalConnection;
+        if (hostConn == null) return;
+        if (connectedClients.Contains(hostConn)) return;
+
+        connectedClients.Add(hostConn);
+        playerNames[hostConn.ClientId] = "Player_" + hostConn.ClientId;
+        playerReady[hostConn.ClientId] = false;
+
+        Debug.Log($"[LobbyRoom] Host registered: {hostConn.ClientId}");
+    }
 
     public IReadOnlyDictionary<int, string> PlayerNames => playerNames;
     public IReadOnlyDictionary<int, bool> PlayerReady => playerReady;

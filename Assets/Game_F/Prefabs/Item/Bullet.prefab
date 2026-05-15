@@ -72,7 +72,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 92aa8b0f5f5816f4cae8c6f2091860d4, type: 2}
+  - {fileID: 2100000, guid: 785168c0f8c5b1847a9589d20f6a57d6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,6 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FishNet.Runtime::FishNet.Object.NetworkObject
+  _localLevelOfDetailCalculationType: 0
+  _useLevelOfDetail: 0
+  _useRootLevelOfDetail: 1
   NetworkObserver: {fileID: 0}
   _enablePrediction: 0
   _predictionType: 0
@@ -173,7 +176,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedTimestamp: -8584241027050247580
+  _initializedTimestamp: -8584227405155380114
 --- !u!114 &6445661351062363978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +238,7 @@ MonoBehaviour:
   _componentIndexCache: 1
   _addedNetworkObject: {fileID: 6083218887948493195}
   _networkObjectCache: {fileID: 6083218887948493195}
-  speed: 20
+  speed: 30
   bulletRadius: 0.1
 --- !u!54 &5898767949118635095
 Rigidbody:

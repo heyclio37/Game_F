@@ -24,12 +24,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110155798198157048}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.341, z: 0.646}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.21899998, z: 0.646}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8903936826136431241}
+  m_Father: {fileID: 1850242302382308793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3540191068382217668
 GameObject:
@@ -133,7 +133,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5116496372487594582}
-  - {fileID: 4006124656982427729}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4174069824912926229
@@ -170,6 +169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FishNet.Runtime::FishNet.Object.NetworkObject
+  _localLevelOfDetailCalculationType: 0
+  _useLevelOfDetail: 0
+  _useRootLevelOfDetail: 1
   NetworkObserver: {fileID: 0}
   _enablePrediction: 0
   _predictionType: 0
@@ -185,7 +187,7 @@ MonoBehaviour:
   _spectatorInterpolation: 2
   _enableTeleport: 0
   _teleportThreshold: 1
-  <PrefabId>k__BackingField: 0
+  <PrefabId>k__BackingField: 2
   <SpawnableCollectionId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 4280865746691452665
   SceneId: 0
@@ -206,6 +208,7 @@ MonoBehaviour:
   - {fileID: -6097881373684288367}
   - {fileID: 8622157931876555744}
   - {fileID: -4969498091791553585}
+  - {fileID: 4541700315260898613}
   - {fileID: 6836711981721387917}
   InitializedParentNetworkBehaviour: {fileID: 0}
   InitializedNestedNetworkObjects: []
@@ -217,7 +220,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _preventDespawnOnDisconnect: 0
   _defaultDespawnType: 0
-  _initializedTimestamp: -8584253928210321338
+  _initializedTimestamp: -8584228903082021813
 --- !u!114 &1333065769422559781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,9 +353,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca27ad9454ea4f8098f8ae2bff94ea38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCaptureState
-  _componentIndexCache: 255
+  _componentIndexCache: 5
   _addedNetworkObject: {fileID: 8754131952241454181}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 8754131952241454181}
   playerRefs: {fileID: 4174069824912926229}
 --- !u!1 &8691986352501858107
 GameObject:
@@ -568,6 +571,7 @@ Transform:
   m_Children:
   - {fileID: 7853805755641689385}
   - {fileID: 1982127372198942623}
+  - {fileID: 4006124656982427729}
   m_Father: {fileID: 5116496372487594582}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6970533160521200191
@@ -639,7 +643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: FishNet.Runtime::FishNet.Component.Transforming.NetworkTransform
-  _componentIndexCache: 5
+  _componentIndexCache: 6
   _addedNetworkObject: {fileID: 8754131952241454181}
   _networkObjectCache: {fileID: 8754131952241454181}
   _componentConfiguration: 0

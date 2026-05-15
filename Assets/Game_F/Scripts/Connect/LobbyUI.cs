@@ -1,8 +1,9 @@
 using System.Collections.Generic;
-using FishNet;
-using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
+using FishNet;
 
 public class LobbyUI : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class LobbyUI : MonoBehaviour
     [SerializeField] private TMP_InputField joinIdInputField;
     [SerializeField] private Button joinByIdButton;
     [SerializeField] private TMP_Text noLobbiesText;
+    [SerializeField] private Button backButton;
 
     [Header("Lobby Room Panel")] [SerializeField]
     private GameObject lobbyRoomPanel;
@@ -29,9 +31,24 @@ public class LobbyUI : MonoBehaviour
     [Header("Loading Panel")] [SerializeField]
     private GameObject loadingPanel;
 
+    private enum Panel
+    {
+        MainMenu,
+        LobbyRoom,
+        Loading
+    }
+
+    private Dictionary<Panel, GameObject> panels;
+
     private void Awake()
     {
         Instance = this;
+        panels = new Dictionary<Panel, GameObject>
+        {
+            { Panel.MainMenu, mainMenuPanel },
+            { Panel.LobbyRoom, lobbyRoomPanel },
+            { Panel.Loading, loadingPanel }
+        };
     }
 
     private void Start()
@@ -41,6 +58,7 @@ public class LobbyUI : MonoBehaviour
         joinByIdButton.onClick.AddListener(OnJoinById);
         readyButton.onClick.AddListener(OnToggleReady);
         leaveLobbyButton.onClick.AddListener(OnLeaveLobby);
+        backButton.onClick.AddListener(OnBack);
 
         if (noLobbiesText != null)
             noLobbiesText.gameObject.SetActive(false);
@@ -48,17 +66,12 @@ public class LobbyUI : MonoBehaviour
         ShowMainMenu();
     }
 
-
-    private void OnCreateLobby()
-    {
-        SteamLobbyManager.Instance.CreateLobby();
-    }
+    private void OnCreateLobby() => SteamLobbyManager.Instance.CreateLobby();
 
     private void OnFindLobby()
     {
         if (noLobbiesText != null)
             noLobbiesText.gameObject.SetActive(false);
-
         SteamLobbyManager.Instance.FindAndJoinLobby();
     }
 
@@ -76,13 +89,11 @@ public class LobbyUI : MonoBehaviour
 
     private void OnToggleReady()
     {
-
         if (!InstanceFinder.IsClientStarted)
         {
             Debug.LogWarning("[LobbyUI] Client not started yet");
             return;
         }
-
 
         if (LobbyRoomManager.Instance == null)
         {
@@ -102,48 +113,41 @@ public class LobbyUI : MonoBehaviour
     private void OnLeaveLobby()
     {
         SteamLobbyManager.Instance.LeaveLobby();
-        ShowMainMenu();
+        Destroy(InstanceFinder.NetworkManager.gameObject);
+        SceneManager.LoadScene("ModeSelectScene");
     }
 
-
-    public void ShowMainMenu()
+    private void OnBack()
     {
-        if (mainMenuPanel != null) mainMenuPanel.SetActive(true);
-        if (lobbyRoomPanel != null) lobbyRoomPanel.SetActive(false);
-        if (loadingPanel != null) loadingPanel.SetActive(false);
+        if (SteamLobbyManager.Instance != null)
+            SteamLobbyManager.Instance.LeaveLobby();
+
+        Destroy(InstanceFinder.NetworkManager.gameObject);
+        SceneManager.LoadScene("ModeSelectScene");
     }
 
-    public void ShowLobbyRoom()
+    private void ShowPanel(Panel panel)
     {
-        if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
-        if (lobbyRoomPanel != null) lobbyRoomPanel.SetActive(true);
-        if (loadingPanel != null) loadingPanel.SetActive(false);
+        foreach (var kv in panels)
+            if (kv.Value != null)
+                kv.Value.SetActive(kv.Key == panel);
     }
 
-    public void ShowLoadingScreen()
-    {
-
-        if (mainMenuPanel != null) mainMenuPanel.SetActive(false);
-        if (lobbyRoomPanel != null) lobbyRoomPanel.SetActive(false);
-        if (loadingPanel != null) loadingPanel.SetActive(true);
-    }
-
+    public void ShowMainMenu() => ShowPanel(Panel.MainMenu);
+    public void ShowLobbyRoom() => ShowPanel(Panel.LobbyRoom);
+    public void ShowLoadingScreen() => ShowPanel(Panel.Loading);
 
     public void EnableReadyButton()
     {
-        Debug.Log("[LobbyUI] EnableReadyButton called!");
-        Debug.Log($"[LobbyUI] readyButton is null: {readyButton == null}");
         if (readyButton != null)
             readyButton.interactable = true;
     }
-
 
     public void SetLobbyIdText(string id)
     {
         if (lobbyIdText != null)
             lobbyIdText.text = "Lobby ID: " + id;
     }
-
 
     public void ShowNoLobbiesMessage()
     {
@@ -153,7 +157,6 @@ public class LobbyUI : MonoBehaviour
             noLobbiesText.text = "Лобби не найдено. Создай своё!";
         }
     }
-
 
     public void ShowError(string message)
     {
@@ -171,25 +174,20 @@ public class LobbyUI : MonoBehaviour
         if (playerListContainer == null) return;
 
         foreach (Transform child in playerListContainer)
-        {
             if (child != null)
                 Destroy(child.gameObject);
-        }
 
         foreach (var kv in names)
         {
             if (playerListContainer == null) return;
 
-            int id = kv.Key;
-            string playerName = kv.Value;
-            bool isReady = ready.TryGetValue(id, out bool r) && r;
-
+            bool isReady = ready.TryGetValue(kv.Key, out bool r) && r;
             GameObject row = Instantiate(playerRowPrefab, playerListContainer);
 
             TMP_Text nameText = row.transform.Find("NameText")?.GetComponent<TMP_Text>();
             TMP_Text readyText = row.transform.Find("ReadyText")?.GetComponent<TMP_Text>();
 
-            if (nameText) nameText.text = playerName;
+            if (nameText) nameText.text = kv.Value;
             if (readyText) readyText.text = isReady ? "Ready" : "...";
         }
     }

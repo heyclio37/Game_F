@@ -14,7 +14,20 @@ public class PlayerCamera : NetworkBehaviour
     {
         base.OnStartClient();
         if (!IsOwner) return;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         SetupCamera();
+    }
+
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+        if (!IsOwner) return;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void Update()

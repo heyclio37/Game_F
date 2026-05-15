@@ -59,7 +59,19 @@ public class PlayerInteract : NetworkBehaviour
     private void Attack()
     {
         if (heldTaserGun == null) return;
-        ShootServerRpc(playerRefs.CameraTarget.forward);
+
+        // Луч из центра экрана
+        Ray ray = new Ray(playerRefs.CameraTarget.position, playerRefs.CameraTarget.forward);
+
+        Vector3 aimPoint;
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f))
+            aimPoint = hit.point;
+        else
+            aimPoint = ray.GetPoint(100f);
+
+        Vector3 direction = (aimPoint - heldTaserGun.transform.position).normalized;
+
+        ShootServerRpc(direction);
     }
 
     [ServerRpc]
@@ -151,7 +163,6 @@ public class PlayerInteract : NetworkBehaviour
         PrisonDoor prisonDoor = doorObject.GetComponent<PrisonDoor>();
         if (prisonDoor == null) return;
 
-        // Только свободный игрок может открыть тюремную дверь
         PlayerCaptureState captureState = GetComponent<PlayerCaptureState>();
         if (captureState != null && captureState.IsCaptured) return;
 
