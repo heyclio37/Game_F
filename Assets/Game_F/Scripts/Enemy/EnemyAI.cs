@@ -89,6 +89,7 @@ public class EnemyAI : NetworkBehaviour
 
             PlayerCaptureState captureState = player.GetComponent<PlayerCaptureState>();
             if (captureState != null && captureState.IsCaptured) continue;
+            if (captureState != null && captureState.IsEscaped) continue;
 
             Vector3 playerPosition = player.transform.position;
             Vector3 directionToPlayer = (playerPosition - transform.position).normalized;

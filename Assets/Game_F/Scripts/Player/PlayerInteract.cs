@@ -6,27 +6,30 @@ public class PlayerInteract : NetworkBehaviour
 {
     [SerializeField] private PlayerRefs playerRefs;
 
-    [Header("Item Clipping")]
-    [SerializeField] private float itemBaseDistance = 0.4f;
+    [Header("Item Clipping")] [SerializeField]
+    private float itemBaseDistance = 0.4f;
+
     [SerializeField] private float itemMinDistance = 0.08f;
     [SerializeField] private float itemRadius = 0.12f;
     [SerializeField] private LayerMask obstacleMask;
 
-    [Header("Shooting")]
-    [SerializeField] private float minShootDistance = 1.0f;
+    [Header("Shooting")] [SerializeField] private float minShootDistance = 1.0f;
 
     private readonly SyncVar<NetworkObject> heldItem = new();
     private PickupItem heldPickupItem;
     private TaserGun heldTaserGun;
+    private IHoldInteractable currentHoldTarget;
 
     public TaserGun HeldTaserGun => heldTaserGun;
-    public PickupItem HeldPickupItem => heldPickupItem; 
+    public PickupItem HeldPickupItem => heldPickupItem;
 
     public override void OnStartClient()
     {
         base.OnStartClient();
         if (!IsOwner) return;
         GameInput.Instance.OnInteractAction += Interact;
+        GameInput.Instance.OnInteractHoldStarted += InteractHoldStart;
+        GameInput.Instance.OnInteractHoldCanceled += InteractHoldEnd;
         GameInput.Instance.OnDropAction += Drop;
         GameInput.Instance.OnAttackAction += Attack;
     }
@@ -36,8 +39,16 @@ public class PlayerInteract : NetworkBehaviour
         base.OnStopClient();
         if (!IsOwner) return;
         GameInput.Instance.OnInteractAction -= Interact;
+        GameInput.Instance.OnInteractHoldStarted -= InteractHoldStart;
+        GameInput.Instance.OnInteractHoldCanceled -= InteractHoldEnd;
         GameInput.Instance.OnDropAction -= Drop;
         GameInput.Instance.OnAttackAction -= Attack;
+
+        if (currentHoldTarget != null)
+        {
+            currentHoldTarget.OnHoldEnd(this);
+            currentHoldTarget = null;
+        }
     }
 
     private void Update()
@@ -65,6 +76,34 @@ public class PlayerInteract : NetworkBehaviour
         interactable.Interact(this);
     }
 
+    private void InteractHoldStart()
+    {
+
+        if (!Physics.Raycast(playerRefs.CameraTarget.position, playerRefs.CameraTarget.forward,
+                out RaycastHit hit, playerRefs.InteractDistance))
+        {
+            return;
+        }
+
+        if (!hit.collider.TryGetComponent(out IHoldInteractable holdable))
+            hit.collider.transform.root.TryGetComponent(out holdable);
+
+        if (holdable == null)
+        {
+            return;
+        }
+
+        currentHoldTarget = holdable;
+        currentHoldTarget.OnHoldStart(this);
+    }
+
+    private void InteractHoldEnd()
+    {
+        if (currentHoldTarget == null) return;
+        currentHoldTarget.OnHoldEnd(this);
+        currentHoldTarget = null;
+    }
+
     private void Drop()
     {
         if (heldItem.Value == null) return;
@@ -76,7 +115,8 @@ public class PlayerInteract : NetworkBehaviour
     {
         if (heldTaserGun == null) return;
 
-        if (Physics.Raycast(playerRefs.CameraTarget.position, playerRefs.CameraTarget.forward, out _, minShootDistance, obstacleMask, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(playerRefs.CameraTarget.position, playerRefs.CameraTarget.forward, out _, minShootDistance,
+                obstacleMask, QueryTriggerInteraction.Ignore))
             return;
 
         ShootServerRpc(playerRefs.CameraTarget.forward);

@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: -4969498091791553585}
   - component: {fileID: 4541700315260898613}
   - component: {fileID: -3230275114914769747}
+  - component: {fileID: 2518197625579861048}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -365,6 +366,10 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8754131952241454181}
   _networkObjectCache: {fileID: 8754131952241454181}
   playerRefs: {fileID: 4174069824912926229}
+  visualsToHide:
+  - {fileID: 4697868075629188130}
+  collidersToDisable:
+  - {fileID: 8249553136901718920}
 --- !u!114 &-3230275114914769747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,6 +385,19 @@ MonoBehaviour:
   _componentIndexCache: 255
   _addedNetworkObject: {fileID: 8754131952241454181}
   _networkObjectCache: {fileID: 0}
+--- !u!114 &2518197625579861048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4799788396070400374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29bb16e6a51fc94db5f6dc15a7c58f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpectatorView
+  retargetInterval: 1
 --- !u!1 &8691986352501858107
 GameObject:
   m_ObjectHideFlags: 0

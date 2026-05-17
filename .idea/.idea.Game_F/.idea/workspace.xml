@@ -13,17 +13,12 @@
     <list default="true" id="dd076fc1-3df7-42fe-9898-6c8f2f3f0c00" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game_F/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game_F/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/DefaultPrefabObjects.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultPrefabObjects.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Key.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Key.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Screwdriver.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Screwdriver.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Taser.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Taser.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/box.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/box.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/ItemType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/ItemType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/PickupItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/PickupItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/EnemyAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/EnemyAI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/GameInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/GameInput.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerInteract.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerInteract.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tree.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tree.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/PlayerCaptureState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/PlayerCaptureState.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,10 +41,12 @@
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/States/StunnedState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/ExitDoor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/GarageDoor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerNameRegistrar.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/PlayerCaptureState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/PrisonDoor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/SpectatorView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/TaserGun.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@3dd2fbd8c1f1/Runtime/TMP/TextMeshProUGUI.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/79685a0e6af34ee788f220bc7ae798e82a400/a5/f858b557/CharacterController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -182,7 +179,7 @@
       <workItem from="1778866230074" duration="12739000" />
       <workItem from="1778889112527" duration="1837000" />
       <workItem from="1778890982358" duration="238000" />
-      <workItem from="1779017437601" duration="9553000" />
+      <workItem from="1779017437601" duration="14165000" />
     </task>
     <servers />
   </component>

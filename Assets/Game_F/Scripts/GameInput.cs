@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 public class GameInput : MonoBehaviour
 {
     public event Action OnInteractAction;
+    public event Action OnInteractHoldStarted;
+    public event Action OnInteractHoldCanceled;
     public event Action OnDropAction;
     public event Action OnAttackAction;
    public static GameInput Instance { get; private set; }
@@ -25,6 +27,8 @@ public class GameInput : MonoBehaviour
        playerInputActions.Player.Enable();
 
        playerInputActions.Player.Interact.performed += Interact_Performed;
+       playerInputActions.Player.Interact.started += Interact_Started;
+       playerInputActions.Player.Interact.canceled += Interact_Canceled; 
        playerInputActions.Player.Drop.performed += Drop_Performed;
        playerInputActions.Player.Attack.performed += Attack_Performed;
    }
@@ -52,10 +56,21 @@ public class GameInput : MonoBehaviour
    {
        return playerInputActions.Player.Look.ReadValue<Vector2>();
    }
+   private void Interact_Started(InputAction.CallbackContext context)
+   {
+       OnInteractHoldStarted?.Invoke();
+   }
+
+   private void Interact_Canceled(InputAction.CallbackContext context)
+   {
+       OnInteractHoldCanceled?.Invoke();
+   }
 
    private void OnDestroy()
    {
        playerInputActions.Player.Interact.performed -= Interact_Performed;
+       playerInputActions.Player.Interact.started -= Interact_Started;
+       playerInputActions.Player.Interact.canceled -= Interact_Canceled;
        playerInputActions.Player.Drop.performed -= Drop_Performed;
        playerInputActions.Dispose();
    }
