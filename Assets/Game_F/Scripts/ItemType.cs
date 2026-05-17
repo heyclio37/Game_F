@@ -1,6 +1,6 @@
 public enum ItemType
 {
     Key,
-    Tool,
+    Screwdriver,
     Weapon
 }

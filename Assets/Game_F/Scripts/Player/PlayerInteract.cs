@@ -20,6 +20,7 @@ public class PlayerInteract : NetworkBehaviour
     private TaserGun heldTaserGun;
 
     public TaserGun HeldTaserGun => heldTaserGun;
+    public PickupItem HeldPickupItem => heldPickupItem; 
 
     public override void OnStartClient()
     {
