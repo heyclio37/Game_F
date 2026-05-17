@@ -12,24 +12,20 @@
   <component name="ChangeListManager">
     <list default="true" id="dd076fc1-3df7-42fe-9898-6c8f2f3f0c00" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game_F/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game_F/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Materials/Gold.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Materials/Gold.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Player.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scenes/LocalMenuScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scenes/LocalMenuScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scenes/ModeSelectScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scenes/ModeSelectScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LobbyRoomManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LobbyRoomManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalGameStarter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalGameStarter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalLobbyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalLobbyManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalMenuUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalMenuUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/EnemyAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/EnemyAI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/EnemyStateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/EnemyStateMachine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerInteract.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerInteract.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/PlayerCaptureState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/PlayerCaptureState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LobbyRoomSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LobbyRoomSpawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LobbyUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LobbyUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalGameStarter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalGameStarter.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalLobbyManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalLobbyManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalMenuUI.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalMenuUI.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/SpawnPointsHolder.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/SpawnPointsHolder.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/GameResultUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/GameResultUI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game_F/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +184,7 @@
       <workItem from="1778866230074" duration="12739000" />
       <workItem from="1778889112527" duration="1837000" />
       <workItem from="1778890982358" duration="238000" />
-      <workItem from="1779017437601" duration="503000" />
+      <workItem from="1779017437601" duration="6380000" />
     </task>
     <servers />
   </component>

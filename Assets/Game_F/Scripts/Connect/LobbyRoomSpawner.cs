@@ -3,10 +3,11 @@ using FishNet.Object;
 using FishNet.Transporting;
 using UnityEngine;
 
-
 public class LobbyRoomSpawner : MonoBehaviour
 {
     [SerializeField] private NetworkObject lobbyRoomManagerPrefab;
+
+    private bool hasSpawned = false;
 
     private void Start()
     {
@@ -21,20 +22,25 @@ public class LobbyRoomSpawner : MonoBehaviour
 
     private void OnServerConnectionState(ServerConnectionStateArgs args)
     {
-        Debug.Log($"[LobbyRoomSpawner] Server state: {args.ConnectionState}");
+        if (args.ConnectionState != LocalConnectionState.Started) return;
 
-        if (args.ConnectionState == LocalConnectionState.Started)
+        if (hasSpawned)
         {
-            if (lobbyRoomManagerPrefab == null)
-            {
-                Debug.LogError("[LobbyRoomSpawner] prefab is NULL! Assign it in Inspector!");
-                return;
-            }
-
-            Debug.Log("[LobbyRoomSpawner] Spawning LobbyRoomManager...");
-            NetworkObject obj = Instantiate(lobbyRoomManagerPrefab);
-            InstanceFinder.ServerManager.Spawn(obj);
-            Debug.Log("[LobbyRoomSpawner] Done!");
+            Debug.LogWarning("[LobbyRoomSpawner] Already spawned, skipping");
+            return;
         }
+
+        if (LobbyRoomManager.Instance != null)
+        {
+            Debug.LogWarning("[LobbyRoomSpawner] LobbyRoomManager.Instance already exists, skipping spawn");
+            hasSpawned = true;
+            return;
+        }
+
+        NetworkObject obj = Instantiate(lobbyRoomManagerPrefab);
+        InstanceFinder.ServerManager.Spawn(obj);
+        hasSpawned = true;
+
+        Debug.Log("[LobbyRoomSpawner] LobbyRoomManager spawned");
     }
 }

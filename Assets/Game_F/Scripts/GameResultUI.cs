@@ -8,19 +8,17 @@ public class GameResultUI : MonoBehaviour
 {
     public static GameResultUI Instance { get; private set; }
 
-    [Header("Panel")]
-    [SerializeField] private GameObject panel;
+    [Header("Panel")] [SerializeField] private GameObject panel;
 
-    [Header("Header")]
-    [SerializeField] private TMP_Text titleText;
+    [Header("Header")] [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text subtitleText;
 
-    [Header("Player List")]
-    [SerializeField] private Transform listContainer;
+    [Header("Player List")] [SerializeField]
+    private Transform listContainer;
+
     [SerializeField] private GameObject rowPrefab;
 
-    [Header("Buttons")]
-    [SerializeField] private Button returnToMenuButton;
+    [Header("Buttons")] [SerializeField] private Button returnToMenuButton;
     [SerializeField] private Button quitButton;
 
     public bool IsShown => panel != null && panel.activeSelf;
@@ -80,6 +78,13 @@ public class GameResultUI : MonoBehaviour
     private void OnReturnToMenu()
     {
         returnToMenuButton.interactable = false;
+
+        if (LobbyRoomManager.Instance != null)
+        {
+            if (LobbyRoomManager.Instance.IsServerStarted)
+                LobbyRoomManager.Instance.ServerManager.Despawn(LobbyRoomManager.Instance.NetworkObject);
+            LobbyRoomManager.Cleanup();
+        }
 
         if (GameConnectionManager.Instance != null &&
             GameConnectionManager.Instance.Mode == ConnectionMode.Steam)

@@ -112,6 +112,13 @@ public class LobbyUI : MonoBehaviour
 
     private void OnLeaveLobby()
     {
+        if (LobbyRoomManager.Instance != null)
+        {
+            if (LobbyRoomManager.Instance.IsServerStarted)
+                LobbyRoomManager.Instance.ServerManager.Despawn(LobbyRoomManager.Instance.NetworkObject);
+            LobbyRoomManager.Cleanup();
+        }
+
         SteamLobbyManager.Instance.LeaveLobby();
         Destroy(InstanceFinder.NetworkManager.gameObject);
         SceneManager.LoadScene("ModeSelectScene");
