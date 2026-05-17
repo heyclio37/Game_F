@@ -7,7 +7,6 @@ using FishNet.Object.Synchronizing;
 using FishNet.Transporting;
 using UnityEngine;
 
-
 public class LobbyRoomManager : NetworkBehaviour
 {
     public static LobbyRoomManager Instance { get; private set; }
@@ -18,15 +17,9 @@ public class LobbyRoomManager : NetworkBehaviour
     [Header("Player Spawning")] [SerializeField]
     private NetworkObject playerPrefab;
 
-
     private readonly SyncDictionary<int, string> playerNames = new();
-
     private readonly SyncDictionary<int, bool> playerReady = new();
-
-
     private readonly HashSet<int> loadedPlayers = new();
-
-
     private readonly List<NetworkConnection> connectedClients = new();
 
     private bool gameStartTriggered = false;
@@ -34,7 +27,6 @@ public class LobbyRoomManager : NetworkBehaviour
     public override void OnStartNetwork()
     {
         base.OnStartNetwork();
-
         playerNames.OnChange += OnPlayerListChanged;
         playerReady.OnChange += OnReadyStateChanged;
     }
@@ -56,7 +48,6 @@ public class LobbyRoomManager : NetworkBehaviour
 
         LobbyUI.Instance?.EnableReadyButton();
 
-        // Фикс: хост не попадает в OnRemoteConnectionState
         if (IsServerStarted)
             RegisterHostAsPlayer();
 
@@ -71,6 +62,8 @@ public class LobbyRoomManager : NetworkBehaviour
         ServerManager.OnRemoteConnectionState += OnRemoteConnectionState;
         InstanceFinder.SceneManager.OnClientLoadedStartScenes += OnClientLoadedStartScenes;
 
+        PlayerNameRegistrar.OnNameReceived += OnNameReceivedFromClient;
+
         Debug.Log("[LobbyRoom] OnStartServer");
     }
 
@@ -78,7 +71,21 @@ public class LobbyRoomManager : NetworkBehaviour
     {
         base.OnStopServer();
         ServerManager.OnRemoteConnectionState -= OnRemoteConnectionState;
-        InstanceFinder.SceneManager.OnClientLoadedStartScenes -= OnClientLoadedStartScenes;
+
+        if (InstanceFinder.SceneManager != null)
+            InstanceFinder.SceneManager.OnClientLoadedStartScenes -= OnClientLoadedStartScenes;
+
+        PlayerNameRegistrar.OnNameReceived -= OnNameReceivedFromClient;
+    }
+
+    [Server]
+    private void OnNameReceivedFromClient(int clientId, string name, ulong steamId)
+    {
+        if (!playerNames.ContainsKey(clientId)) return;
+        if (string.IsNullOrEmpty(name)) return;
+
+        playerNames[clientId] = name;
+        Debug.Log($"[LobbyRoom] Updated name for client {clientId}: {name}");
     }
 
     private void OnRemoteConnectionState(NetworkConnection conn, RemoteConnectionStateArgs args)
@@ -86,9 +93,19 @@ public class LobbyRoomManager : NetworkBehaviour
         if (args.ConnectionState == RemoteConnectionState.Started)
         {
             connectedClients.Add(conn);
-            playerNames[conn.ClientId] = "Player_" + conn.ClientId;
+
+            string initialName = "Player_" + conn.ClientId;
+            if (PlayerNameRegistrar.Instance != null &&
+                PlayerNameRegistrar.Instance.TryGetPendingName(conn.ClientId, out string pn, out _) &&
+                !string.IsNullOrEmpty(pn))
+            {
+                initialName = pn;
+            }
+
+            playerNames[conn.ClientId] = initialName;
             playerReady[conn.ClientId] = false;
-            Debug.Log($"[LobbyRoom] Player {conn.ClientId} joined. Total: {connectedClients.Count}");
+
+            Debug.Log($"[LobbyRoom] Player {conn.ClientId} joined as '{initialName}'. Total: {connectedClients.Count}");
         }
         else if (args.ConnectionState == RemoteConnectionState.Stopped)
         {
@@ -100,51 +117,27 @@ public class LobbyRoomManager : NetworkBehaviour
         }
     }
 
-
     [ServerRpc(RequireOwnership = false)]
     public void ToggleReadyServerRpc(NetworkConnection conn = null)
     {
-        Debug.Log($"[LobbyRoom] ToggleReadyServerRpc called, conn: {conn?.ClientId}");
-
-        if (conn == null)
-        {
-            Debug.LogError("[LobbyRoom] conn is null!");
-            return;
-        }
+        if (conn == null) return;
 
         int id = conn.ClientId;
-        if (!playerReady.ContainsKey(id))
-        {
-            Debug.LogError($"[LobbyRoom] Player {id} not in playerReady dict!");
-            return;
-        }
+        if (!playerReady.ContainsKey(id)) return;
 
         playerReady[id] = !playerReady[id];
-        Debug.Log($"[LobbyRoom] Player {id} ready: {playerReady[id]}");
         CheckAllReady();
     }
 
     private void CheckAllReady()
     {
-        Debug.Log($"[LobbyRoom] CheckAllReady: {playerReady.Count} players");
-
-
-        if (playerReady.Count < 1)
-        {
-            Debug.Log($"[LobbyRoom] Not enough players: {playerReady.Count}");
-            return;
-        }
+        if (playerReady.Count < 1) return;
 
         foreach (var kv in playerReady)
-        {
-            Debug.Log($"[LobbyRoom] Player {kv.Key} ready: {kv.Value}");
             if (!kv.Value) return;
-        }
 
-        Debug.Log("[LobbyRoom] All ready! Loading scene...");
         LoadGameScene();
     }
-
 
     [Server]
     private void LoadGameScene()
@@ -165,34 +158,20 @@ public class LobbyRoomManager : NetworkBehaviour
         };
 
         InstanceFinder.SceneManager.LoadGlobalScenes(sld);
-        Debug.Log("[LobbyRoom] Loading game scene: " + gameSceneName);
-
-
         StartCoroutine(WaitForSceneAndSpawn());
     }
 
     private System.Collections.IEnumerator WaitForSceneAndSpawn()
     {
-        Debug.Log("[LobbyRoom] Waiting for GameScene to load...");
-
-
         while (true)
         {
             UnityEngine.SceneManagement.Scene scene =
                 UnityEngine.SceneManagement.SceneManager.GetSceneByName(gameSceneName);
-            if (scene.isLoaded)
-            {
-                Debug.Log("[LobbyRoom] GameScene loaded! Waiting extra frame...");
-                break;
-            }
-
+            if (scene.isLoaded) break;
             yield return null;
         }
 
-
         yield return new WaitForSeconds(1f);
-
-        Debug.Log("[LobbyRoom] Calling SignalGameStart");
         SignalGameStart();
     }
 
@@ -202,8 +181,6 @@ public class LobbyRoomManager : NetworkBehaviour
         if (!gameStartTriggered) return;
 
         loadedPlayers.Add(conn.ClientId);
-        Debug.Log($"[LobbyRoom] Client {conn.ClientId} loaded scene. " +
-                  $"{loadedPlayers.Count}/{connectedClients.Count} ready");
 
         if (loadedPlayers.Count >= connectedClients.Count && connectedClients.Count > 0)
         {
@@ -212,40 +189,22 @@ public class LobbyRoomManager : NetworkBehaviour
         }
     }
 
-
     [Server]
     private void SignalGameStart()
     {
-        Debug.Log($"[LobbyRoom] SignalGameStart called. Clients: {connectedClients.Count}");
-
         for (int i = 0; i < connectedClients.Count; i++)
-        {
-            Debug.Log($"[LobbyRoom] Spawning player for client {connectedClients[i].ClientId}");
             SpawnPlayer(connectedClients[i], i);
-        }
 
-        if (GameManager.Instance == null)
-        {
-            Debug.LogError("[LobbyRoom] GameManager not found!");
-            return;
-        }
-
+        if (GameManager.Instance == null) return;
         GameManager.Instance.StartGame();
     }
 
     [Server]
     private void SpawnPlayer(NetworkConnection conn, int spawnIndex)
     {
-        Debug.Log($"[LobbyRoom] SpawnPlayer called for conn {conn.ClientId}");
-
-        if (playerPrefab == null)
-        {
-            Debug.LogError("[LobbyRoom] playerPrefab is NULL! Assign it in Inspector on LobbyRoomManagerPrefab!");
-            return;
-        }
+        if (playerPrefab == null) return;
 
         var points = SpawnPointsHolder.Instance?.SpawnPoints;
-        Debug.Log($"[LobbyRoom] SpawnPointsHolder.Instance is null: {SpawnPointsHolder.Instance == null}");
 
         Vector3 spawnPos = Vector3.zero;
         Quaternion spawnRot = Quaternion.identity;
@@ -257,10 +216,10 @@ public class LobbyRoomManager : NetworkBehaviour
             spawnRot = points[idx].rotation;
         }
 
-        Debug.Log($"[LobbyRoom] Instantiating player at {spawnPos}");
         NetworkObject player = Instantiate(playerPrefab, spawnPos, spawnRot);
         ServerManager.Spawn(player, conn);
-        Debug.Log($"[LobbyRoom] Player spawned for conn {conn.ClientId}");
+
+        PlayerNameRegistrar.Instance?.TryApply(conn.ClientId);
     }
 
     [ObserversRpc]
@@ -276,13 +235,11 @@ public class LobbyRoomManager : NetworkBehaviour
 
     private void OnPlayerListChanged(SyncDictionaryOperation op, int key, string value, bool asServer)
     {
-        if (LobbyUI.Instance == null) return;
         LobbyUI.Instance?.UpdatePlayerList(playerNames, playerReady);
     }
 
     private void OnReadyStateChanged(SyncDictionaryOperation op, int key, bool value, bool asServer)
     {
-        if (LobbyUI.Instance == null) return;
         LobbyUI.Instance?.UpdatePlayerList(playerNames, playerReady);
     }
 
@@ -294,10 +251,15 @@ public class LobbyRoomManager : NetworkBehaviour
         if (connectedClients.Contains(hostConn)) return;
 
         connectedClients.Add(hostConn);
-        playerNames[hostConn.ClientId] = "Player_" + hostConn.ClientId;
+
+        string hostName = PlayerNameProvider.GetLocalName();
+        if (string.IsNullOrEmpty(hostName))
+            hostName = "Player_" + hostConn.ClientId;
+
+        playerNames[hostConn.ClientId] = hostName;
         playerReady[hostConn.ClientId] = false;
 
-        Debug.Log($"[LobbyRoom] Host registered: {hostConn.ClientId}");
+        Debug.Log($"[LobbyRoom] Host registered as '{hostName}'");
     }
 
     public IReadOnlyDictionary<int, string> PlayerNames => playerNames;

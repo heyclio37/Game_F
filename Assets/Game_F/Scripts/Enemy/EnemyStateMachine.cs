@@ -9,6 +9,9 @@ public class EnemyStateMachine
         currentState?.Exit(enemy);
         currentState = newState;
         currentState?.Enter(enemy);
+
+        if (newState != null)
+            enemy.SetStateName(newState.GetType().Name);
     }
 
     public void Tick(EnemyAI enemy)

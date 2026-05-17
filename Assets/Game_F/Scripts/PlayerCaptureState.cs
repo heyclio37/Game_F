@@ -44,15 +44,4 @@ public class PlayerCaptureState : NetworkBehaviour
         transform.position = position;
         cc.enabled = true;
     }
-
-    [ObserversRpc]
-    public void ShowGameResult(bool isWin)
-    {
-        if (!IsOwner) return; 
-
-        if (isWin)
-            Debug.Log("[Player] You Win!");
-        else
-            Debug.Log("[Player] You Lose!");
-    }
 }

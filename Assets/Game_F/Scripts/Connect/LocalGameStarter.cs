@@ -1,8 +1,8 @@
-using UnityEngine;
 using FishNet;
 using FishNet.Connection;
-using FishNet.Object;
 using FishNet.Managing.Scened;
+using FishNet.Object;
+using UnityEngine;
 
 public class LocalGameStarter : MonoBehaviour
 {
@@ -12,6 +12,7 @@ public class LocalGameStarter : MonoBehaviour
     [SerializeField] private NetworkObject playerPrefab;
 
     private int spawnIndex = 0;
+    private bool gameSceneLoaded = false;
 
     private void Awake()
     {
@@ -27,6 +28,9 @@ public class LocalGameStarter : MonoBehaviour
 
     public void StartHostGame()
     {
+        spawnIndex = 0;
+        gameSceneLoaded = false;
+
         SceneLoadData sld = new SceneLoadData(gameSceneName)
         {
             ReplaceScenes = ReplaceOption.All,
@@ -36,7 +40,10 @@ public class LocalGameStarter : MonoBehaviour
                 LocalPhysics = UnityEngine.SceneManagement.LocalPhysicsMode.None
             }
         };
+
         InstanceFinder.SceneManager.OnLoadEnd += OnSceneLoaded;
+        InstanceFinder.SceneManager.OnClientLoadedStartScenes += OnClientLoadedStartScenes;
+
         InstanceFinder.SceneManager.LoadGlobalScenes(sld);
     }
 
@@ -47,16 +54,37 @@ public class LocalGameStarter : MonoBehaviour
             if (scene.name != gameSceneName) continue;
 
             InstanceFinder.SceneManager.OnLoadEnd -= OnSceneLoaded;
-
-            SpawnPlayer(InstanceFinder.ClientManager.Connection);
-
-            if (GameManager.Instance != null)
-                GameManager.Instance.StartGame();
-            else
-                Debug.LogError("[LocalGameStarter] GameManager not found!");
+            gameSceneLoaded = true;
+            
+            NetworkConnection hostConn = InstanceFinder.ClientManager.Connection;
+            if (hostConn != null && hostConn.LoadedStartScenes(true))
+            {
+                SpawnPlayer(hostConn);
+                StartGameAfterHostSpawn();
+            }
 
             return;
         }
+    }
+
+    private void OnClientLoadedStartScenes(NetworkConnection conn, bool asServer)
+    {
+        if (!asServer) return;
+        if (!gameSceneLoaded) return;
+        
+        if (conn == InstanceFinder.ClientManager.Connection)
+        {
+            SpawnPlayer(conn);
+            StartGameAfterHostSpawn();
+        }
+    }
+
+    private void StartGameAfterHostSpawn()
+    {
+        if (GameManager.Instance != null)
+            GameManager.Instance.StartGame();
+        else
+            Debug.LogError("[LocalGameStarter] GameManager not found!");
     }
 
     public void SpawnJoiningPlayer(NetworkConnection conn)
@@ -88,6 +116,9 @@ public class LocalGameStarter : MonoBehaviour
 
         NetworkObject player = Instantiate(playerPrefab, pos, rot);
         InstanceFinder.ServerManager.Spawn(player, conn);
+
+        PlayerNameRegistrar.Instance?.TryApply(conn.ClientId);
+
         Debug.Log($"[LocalGameStarter] Spawned player for conn {conn.ClientId}");
     }
 }

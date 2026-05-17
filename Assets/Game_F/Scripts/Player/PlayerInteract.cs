@@ -6,6 +6,15 @@ public class PlayerInteract : NetworkBehaviour
 {
     [SerializeField] private PlayerRefs playerRefs;
 
+    [Header("Item Clipping")]
+    [SerializeField] private float itemBaseDistance = 0.4f;
+    [SerializeField] private float itemMinDistance = 0.08f;
+    [SerializeField] private float itemRadius = 0.12f;
+    [SerializeField] private LayerMask obstacleMask;
+
+    [Header("Shooting")]
+    [SerializeField] private float minShootDistance = 1.0f;
+
     private readonly SyncVar<NetworkObject> heldItem = new();
     private PickupItem heldPickupItem;
     private TaserGun heldTaserGun;
@@ -28,6 +37,12 @@ public class PlayerInteract : NetworkBehaviour
         GameInput.Instance.OnInteractAction -= Interact;
         GameInput.Instance.OnDropAction -= Drop;
         GameInput.Instance.OnAttackAction -= Attack;
+    }
+
+    private void Update()
+    {
+        if (!IsOwner) return;
+        AdjustItemHolderDistance();
     }
 
     private void Interact()
@@ -60,18 +75,10 @@ public class PlayerInteract : NetworkBehaviour
     {
         if (heldTaserGun == null) return;
 
-        // Луч из центра экрана
-        Ray ray = new Ray(playerRefs.CameraTarget.position, playerRefs.CameraTarget.forward);
+        if (Physics.Raycast(playerRefs.CameraTarget.position, playerRefs.CameraTarget.forward, out _, minShootDistance, obstacleMask, QueryTriggerInteraction.Ignore))
+            return;
 
-        Vector3 aimPoint;
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f))
-            aimPoint = hit.point;
-        else
-            aimPoint = ray.GetPoint(100f);
-
-        Vector3 direction = (aimPoint - heldTaserGun.transform.position).normalized;
-
-        ShootServerRpc(direction);
+        ShootServerRpc(playerRefs.CameraTarget.forward);
     }
 
     [ServerRpc]
@@ -94,6 +101,11 @@ public class PlayerInteract : NetworkBehaviour
     private void AttachItemObserversRpc(NetworkObject item)
     {
         if (item == null) return;
+
+        Vector3 resetPos = playerRefs.ItemHolder.localPosition;
+        resetPos.z = itemBaseDistance;
+        playerRefs.ItemHolder.localPosition = resetPos;
+
         heldPickupItem = item.GetComponent<PickupItem>();
         heldPickupItem.AttachTo(playerRefs.ItemHolder);
         heldTaserGun = heldPickupItem.GetComponent<TaserGun>();
@@ -198,6 +210,36 @@ public class PlayerInteract : NetworkBehaviour
         {
             gun.RetrieveBullet();
             ServerManager.Despawn(bulletObject);
+        }
+    }
+
+    private void AdjustItemHolderDistance()
+    {
+        if (heldPickupItem == null) return;
+
+        Vector3 origin = playerRefs.CameraTarget.position;
+        Vector3 direction = playerRefs.CameraTarget.forward;
+
+        if (Physics.SphereCast(
+                origin,
+                itemRadius,
+                direction,
+                out RaycastHit hit,
+                itemBaseDistance + itemRadius,
+                obstacleMask,
+                QueryTriggerInteraction.Ignore))
+        {
+            float targetZ = Mathf.Max(itemMinDistance, hit.distance - itemRadius);
+
+            Vector3 localPos = playerRefs.ItemHolder.localPosition;
+            localPos.z = Mathf.Lerp(localPos.z, targetZ, Time.deltaTime * 20f);
+            playerRefs.ItemHolder.localPosition = localPos;
+        }
+        else
+        {
+            Vector3 localPos = playerRefs.ItemHolder.localPosition;
+            localPos.z = Mathf.Lerp(localPos.z, itemBaseDistance, Time.deltaTime * 20f);
+            playerRefs.ItemHolder.localPosition = localPos;
         }
     }
 }

@@ -12,42 +12,24 @@
   <component name="ChangeListManager">
     <list default="true" id="dd076fc1-3df7-42fe-9898-6c8f2f3f0c00" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game_F/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game_F/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark 2D.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark 2D.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark 3D Normal.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark 3D Normal.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark 3D Rigidbodies.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark 3D Rigidbodies.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark Cubes.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark Cubes.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark Rigidbodies.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Benchmarks/NetworkTransform/Prefabs/NetworkTransform Benchmark Rigidbodies.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/ColliderRollback/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/HashGrid/Prefabs/HashGrid_Moving.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/HashGrid/Prefabs/HashGrid_Moving.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/HashGrid/Prefabs/HashGrid_Static.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/HashGrid/Prefabs/HashGrid_Static.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/CharacterController/Prefabs/CharacterControllerPrediction.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/CharacterController/Prefabs/CharacterControllerPrediction.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Prefabs/RigidbodyPrediction.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/Prediction/Rigidbody/Prefabs/RigidbodyPrediction.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager (Old Examples)/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager/Additive Scenes/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/FishNet/Demos/SceneManager/Additive Scenes/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Door.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Door.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/ExitDoor.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/ExitDoor.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Bullet.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Bullet.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Key.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Key.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Screwdriver.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Screwdriver.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Taser.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Item/Taser.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/LobbyRoomManagerPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/LobbyRoomManagerPrefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Materials/Gold.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Materials/Gold.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Prefabs/PrisonDoor.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Prefabs/PrisonDoor.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scenes/MainMenu.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scenes/MainMenu.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scenes/LocalMenuScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scenes/LocalMenuScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scenes/ModeSelectScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scenes/ModeSelectScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LobbyRoomManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LobbyRoomManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LobbyUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LobbyUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/SteamLobbyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/SteamLobbyManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/NetworkStarter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/NetworkStarter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerCamera.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalGameStarter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalGameStarter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalLobbyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalLobbyManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalMenuUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LocalMenuUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/EnemyAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/EnemyAI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/EnemyStateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/EnemyStateMachine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerInteract.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerInteract.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Game_F/Scripts/PlayerCaptureState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/Scripts/PlayerCaptureState.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game_F/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game_F/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +37,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="52" />
+    <option name="cachedIndexableFilesCount" value="51" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -65,10 +47,13 @@
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LobbyRoomSpawner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/LobbyUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/Connect/SpawnPointsHolder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/EnemyStatusBillboard.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/States/ChaseState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/Enemy/States/StunnedState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/ExitDoor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/Player/PlayerNameRegistrar.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/PlayerCaptureState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/PrisonDoor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game_F/Scripts/TaserGun.cs" root0="FORCE_HIGHLIGHTING" />
@@ -200,7 +185,10 @@
       <workItem from="1778494183967" duration="12582000" />
       <workItem from="1778699112665" duration="8024000" />
       <workItem from="1778711366960" duration="7655000" />
-      <workItem from="1778866230074" duration="2382000" />
+      <workItem from="1778866230074" duration="12739000" />
+      <workItem from="1778889112527" duration="1837000" />
+      <workItem from="1778890982358" duration="238000" />
+      <workItem from="1779017437601" duration="503000" />
     </task>
     <servers />
   </component>

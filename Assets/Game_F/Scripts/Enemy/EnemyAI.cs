@@ -1,4 +1,5 @@
 using FishNet.Object;
+using FishNet.Object.Synchronizing;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,6 +14,7 @@ public class EnemyAI : NetworkBehaviour
     [SerializeField] private float catchDistance = 1.5f;
     [SerializeField] private LayerMask obstacleMask;
 
+
     public NavMeshAgent Agent { get; private set; }
     public Transform[] PatrolPoints => patrolPoints;
     public float WaitTime => waitTime;
@@ -21,6 +23,10 @@ public class EnemyAI : NetworkBehaviour
     public float HearingRange => hearingRange;
     public float StunDuration => stunDuration;
     public float CatchDistance => catchDistance;
+    public IEnemyState CurrentState => stateMachine?.CurrentState;
+
+    private readonly SyncVar<string> currentStateName = new("PatrolState");
+    public string CurrentStateName => currentStateName.Value;
 
     private EnemyStateMachine stateMachine;
     private PatrolState patrolState;
@@ -31,6 +37,7 @@ public class EnemyAI : NetworkBehaviour
     private int currentPatrolIndex;
     public Transform CurrentTarget { get; set; }
     public Vector3 LastKnownPosition { get; set; }
+
 
     private float lastNoiseTime;
     private float noiseCooldown = 1f;
@@ -70,7 +77,6 @@ public class EnemyAI : NetworkBehaviour
         if (!IsServerStarted) return;
         stateMachine.Tick(this);
         Debug.DrawRay(transform.position, transform.forward * sightRange, Color.crimson);
-        Debug.Log(stateMachine.CurrentState);
     }
 
     public Transform DetectPlayer()
@@ -102,6 +108,7 @@ public class EnemyAI : NetworkBehaviour
 
     public void OnNoiseHeard(Vector3 noisePosition)
     {
+        if (stateMachine == null) return;
         if (stateMachine.CurrentState is StunnedState) return;
         if (stateMachine.CurrentState is ChaseState) return;
 
@@ -117,7 +124,7 @@ public class EnemyAI : NetworkBehaviour
         lastNoisePosition = noisePosition;
         ChangeToSearch(noisePosition);
     }
-    
+
     [Server]
     public void TryCatchPlayer(Transform target)
     {
@@ -134,6 +141,12 @@ public class EnemyAI : NetworkBehaviour
             return;
         }
         GameManager.Instance.OnPlayerCaught(captureState);
+    }
+
+    [Server]
+    public void SetStateName(string stateName)
+    {
+        currentStateName.Value = stateName;
     }
 
     public void ChangeToChase(Transform target)

@@ -1,9 +1,9 @@
 using System.Collections;
-using UnityEngine;
 using FishNet;
-using FishNet.Managing;
 using FishNet.Connection;
+using FishNet.Managing;
 using FishNet.Transporting.Tugboat;
+using UnityEngine;
 
 public class LocalLobbyManager : MonoBehaviour
 {
@@ -36,8 +36,21 @@ public class LocalLobbyManager : MonoBehaviour
 
         InstanceFinder.ServerManager.StartConnection();
         InstanceFinder.ClientManager.StartConnection();
-        yield return null;
-        
+
+        // Ждём пока сервер реально станет активным
+        float timeout = 5f;
+        while (!InstanceFinder.IsServerStarted && timeout > 0f)
+        {
+            timeout -= Time.deltaTime;
+            yield return null;
+        }
+
+        if (!InstanceFinder.IsServerStarted)
+        {
+            Debug.LogError("[LocalLobby] Server failed to start within 5 seconds!");
+            yield break;
+        }
+
         InstanceFinder.SceneManager.OnClientLoadedStartScenes += OnClientLoadedStartScenes;
 
         LocalGameStarter starter = FindAnyObjectByType<LocalGameStarter>();
@@ -68,11 +81,10 @@ public class LocalLobbyManager : MonoBehaviour
 
         Debug.Log("[LocalLobby] Joining: " + ip);
     }
-    
+
     private void OnClientLoadedStartScenes(NetworkConnection conn, bool asServer)
     {
         if (!asServer) return;
-        
         if (conn == InstanceFinder.ClientManager.Connection) return;
 
         LocalGameStarter starter = FindAnyObjectByType<LocalGameStarter>();
@@ -84,9 +96,14 @@ public class LocalLobbyManager : MonoBehaviour
 
     public void Leave()
     {
-        InstanceFinder.SceneManager.OnClientLoadedStartScenes -= OnClientLoadedStartScenes;
+        if (InstanceFinder.SceneManager != null)
+            InstanceFinder.SceneManager.OnClientLoadedStartScenes -= OnClientLoadedStartScenes;
 
-        if (InstanceFinder.NetworkManager == null) return;
+        if (InstanceFinder.NetworkManager == null)
+        {
+            IsHost = false;
+            return;
+        }
 
         if (IsHost)
         {
