@@ -16,12 +16,18 @@ public class SpectatorUI : MonoBehaviour
 
     private void Update()
     {
+        if (GameResultUI.Instance != null && GameResultUI.Instance.IsShown)
+        {
+            if (panel != null && panel.activeSelf)
+                panel.SetActive(false);
+            return;
+        }
+
         checkTimer -= Time.deltaTime;
         if (checkTimer > 0f) return;
         checkTimer = 0.5f;
 
         if (trackedSpectator != null && trackedSpectator.IsActive) return;
-
 
         SpectatorView[] all = FindObjectsByType<SpectatorView>(FindObjectsSortMode.None);
         foreach (var s in all)
@@ -32,7 +38,7 @@ public class SpectatorUI : MonoBehaviour
                 return;
             }
         }
-        
+
         if (panel != null && panel.activeSelf)
             panel.SetActive(false);
     }

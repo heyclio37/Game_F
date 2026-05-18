@@ -11,7 +11,7 @@ public class PickupItem : NetworkBehaviour, IInteractable
     public bool IsHeld { get; set; }
 
     [Header("Noise")]
-    [SerializeField] private float minImpactSpeedForNoise = 2.0f;
+    [Tooltip("Сколько секунд после спавна предмет не создаёт шум (защита от ложных срабатываний при загрузке сцены)")]
     [SerializeField] private float spawnNoiseGracePeriod = 0.5f;
 
     private float spawnTime;
@@ -59,20 +59,13 @@ public class PickupItem : NetworkBehaviour, IInteractable
         if (isServer)
             ItemRigidbody.linearVelocity = velocity;
         IsHeld = false;
-
-        // Сбрасываем "льготный период" — при выбросе тоже не должно сразу шуметь
-        // (предмет может удариться о коллайдер игрока)
-        if (isServer)
-            spawnTime = Time.time;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (!IsServerStarted) return;
         if (IsHeld) return;
-
         if (Time.time - spawnTime < spawnNoiseGracePeriod) return;
-        if (collision.relativeVelocity.magnitude < minImpactSpeedForNoise) return;
 
         NoiseSystem.MakeNoise(transform.position);
     }
@@ -82,4 +75,4 @@ public class PickupItem : NetworkBehaviour, IInteractable
     {
         ServerManager.Despawn(gameObject);
     }
-}   
+}

@@ -44,6 +44,7 @@ public class GameResultUI : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        DeactivateLocalSpectator();
 
         bool localWon = false;
         foreach (var r in results)
@@ -72,6 +73,18 @@ public class GameResultUI : MonoBehaviour
             GameResultRow rowComp = row.GetComponent<GameResultRow>();
             if (rowComp != null)
                 rowComp.Setup(r, r.ClientId == localClientId);
+        }
+    }
+    
+    private void DeactivateLocalSpectator()
+    {
+        SpectatorView[] all = FindObjectsByType<SpectatorView>(FindObjectsSortMode.None);
+        foreach (var s in all)
+        {
+            if (s.IsActive)
+            {
+                s.Deactivate();
+            }
         }
     }
 
